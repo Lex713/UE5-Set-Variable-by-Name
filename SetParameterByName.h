@@ -24,4 +24,13 @@ public:
 
     // Required for CustomThunk wildcard evaluation
     DECLARE_FUNCTION(execSetVariableByName);
+
+    /**
+     * Finds a variable on the target object by name and gets its value.
+     * Returns true if successfully found and copied. Supports arrays and structs.
+     */
+    UFUNCTION(BlueprintCallable, CustomThunk, Category = "Utilities", meta = (DefaultToSelf = "Target", CustomStructureParam = "OutValue"))
+    static bool GetVariableByName(UObject* Target, FName VariableName, int32& OutValue);
+
+    DECLARE_FUNCTION(execGetVariableByName);
 };
